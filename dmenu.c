@@ -88,7 +88,7 @@ calcoffsets(void)
 	int i, n;
 
 	if (lines > 0)
-		n = (lines * bh) - 1;
+		n = (lines * bh);
 	else
 		n = mw - (promptw + inputw + TEXTW("<") + TEXTW(">"));
 	/* calculate which items will begin the next page and previous page */
@@ -240,8 +240,7 @@ drawmenu(void)
 		/* draw vertical list */
 		for (item = curr; item != next; item = item->right)
 			drawitem(item, x, y += bh, mw - x);
-
-		drawdate(x, lines * bh, w);
+		drawdate(x, (lines+1) * bh, w);
 	} else if (matches) {
 		/* draw horizontal list */
 		x += inputw;
@@ -711,7 +710,7 @@ setup(void)
 	/* calculate menu geometry */
 	bh = drw->fonts->h + 2;
 	lines = MAX(lines, 0);
-	mh = (lines + 1) * bh;
+	mh = (lines + 2) * bh;
 	promptw = (prompt && *prompt) ? TEXTW(prompt) - lrpad / 4 : 0;
 #ifdef XINERAMA
 	i = 0;
