@@ -711,7 +711,7 @@ setup(void)
 	/* calculate menu geometry */
 	bh = drw->fonts->h + 2;
 	lines = MAX(lines, 0);
-	mh = (lines + 2) * bh;
+	mh = (lines + (lines > 0 ? 2 : 1)) * bh;
 	promptw = (prompt && *prompt) ? TEXTW(prompt) - lrpad / 4 : 0;
 #ifdef XINERAMA
 	i = 0;
@@ -852,14 +852,14 @@ readxresources(void) {
 			colors[SchemeNormHighlight][ColFg] = strdup(xval.addr);
 		else
 			colors[SchemeNormHighlight][ColFg] = strdup(colors[SchemeNormHighlight][ColFg]);
-		colors[SchemeNormHighlight][ColBg] = strdup(colors[SchemeNorm][ColBg]);
 
 		if (XrmGetResource(xdb, "dmenu.selhighlight", "*", &type, &xval))
 			colors[SchemeSelHighlight][ColFg] = strdup(xval.addr);
 		else
 			colors[SchemeSelHighlight][ColFg] = strdup(colors[SchemeSelHighlight][ColFg]);
-		colors[SchemeSelHighlight][ColBg] = strdup(colors[SchemeSel][ColBg]);
 
+		colors[SchemeSelHighlight][ColBg] = strdup(colors[SchemeSel][ColBg]);
+		colors[SchemeNormHighlight][ColBg] = strdup(colors[SchemeNorm][ColBg]);
 		XrmDestroyDatabase(xdb);
 	}
 }
