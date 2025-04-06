@@ -20,6 +20,8 @@ dmenu \- dynamic menu
 .IR color ]
 .RB [ \-sf
 .IR color ]
+.RB [ \-bw
+.IR width ]
 .RB [ \-w
 .IR windowid ]
 .P
@@ -50,6 +52,9 @@ is faster, but will lock up X until stdin reaches end\-of\-file.
 .B \-s
 dmenu matches menu items case sensitively.
 .TP
+.B \-ix
+dmenu prints the index of matched text instead of the text itself.
+.TP
 .BI \-l " lines"
 dmenu lists items vertically, with the given number of lines.
 .TP
@@ -77,6 +82,9 @@ defines the selected background color.
 .TP
 .BI \-sf " color"
 defines the selected foreground color.
+.TP
+.BI \-bw " width"
+defines border width in pixels.
 .TP
 .B \-v
 prints version information to stdout, then exits.
